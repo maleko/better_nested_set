@@ -929,7 +929,7 @@ module SymetrieCom
           with_optional_transaction(transact) do
             self.reload(:select => "#{left_col_name}, #{right_col_name}, #{parent_col_name}") # the lft/rgt values could be stale (target is reloaded below)
             if target.is_a?(base_set_class)
-              target.reload(:select => "#{left_col_name}, #{right_col_name}, #{parent_col_name}") # could be stale
+              target.reload#(:select => "#{left_col_name}, #{right_col_name}, #{parent_col_name}") # could be stale
             else
               target = self.class.find_in_nested_set(target) # load object if we were given an ID
             end
@@ -1006,7 +1006,7 @@ module SymetrieCom
                 scope_condition)
             end
             self.reload(:select => "#{left_col_name}, #{right_col_name}, #{parent_col_name}")
-            target.reload(:select => "#{left_col_name}, #{right_col_name}, #{parent_col_name}")
+            target.reload#(:select => "#{left_col_name}, #{right_col_name}, #{parent_col_name}")
           end
         end
         
